@@ -19,6 +19,9 @@ sidebar <- dashboardSidebar(
 # dashboard body -----------------
 body <- dashboardBody(
   
+  # set theme we created from stylesheet -----
+  fresh::use_theme("dashboard-fresh-theme.css"),
+  
   # tabItems -----
   tabItems(
     
@@ -31,7 +34,15 @@ body <- dashboardBody(
                    # background info box -----
                    box(width = NULL,
                        
-                       "background info here"
+                       title = tagList(icon("water"),
+                                       strong("Monitoring Fish Creek Watershed")),
+                       includeMarkdown("text/intro.md"),
+                       tags$img(src = "watershed.jpeg",
+                                alt = "A map of Northern Alaska, showing Fish Creek Watershed, located within the National Petroleum Reserve",
+                                style = "max-width: 100%;"),
+                       tags$h6(tags$em("Map source:", tags$a(href = "http://fishcreekwatershed.org/",
+                                                             "FWCO")),
+                               style = "text-align: center;")
                        
                    ) # END background box -----
                    
@@ -46,7 +57,8 @@ body <- dashboardBody(
                      # citation box -----
                      box(width = NULL,
                          
-                         "citation here"
+                         title = strong("Citation"),
+                         includeMarkdown("text/citation.md")
                          
                      ) # END citation box -----
                      
@@ -58,7 +70,8 @@ body <- dashboardBody(
                      # disclaimer box -----
                      box(width = NULL,
                          
-                         "disclaimer here"
+                         title = strong("Disclaimer"),
+                         includeMarkdown("text/disclaimer.md")
                          
                      ) # END disclaimer box -----
                      
